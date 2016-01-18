@@ -14,10 +14,10 @@ if(isset($_GET["mode"]) && $_GET["mode"] == "edit") {
 	$edit = false;
 }
 
-makeheader();
+makeheader($page, $name);
 makepage($page, $edit);
 if (isset($_POST['send'])) {
-	if(empty($_POST['content'])) { die("<p>Empty post!</p>"); }
+	if(empty($_POST['content'])) { unlink("pages/$page.tm"); }
 	else { post($page, $_POST['content']); }
 }
 makefooter($page, $edit);
