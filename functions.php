@@ -47,7 +47,7 @@ function makeform ($content, $edit) {
 function makefooter ($page, $edit) {
 	include("config.php");
         $self = $_SERVER['PHP_SELF']; // get current page
-	echo('<div class="toolbar">[<a href="?page=' . $mainpage . '">MainPage</a>] [<a href="?page=' . $page  . ($edit == true ? '&mode=view' : '&mode=edit') . '">' . ($edit == true ? 'ViewPage' : 'EditPage') . '</a>] [<a href="?page=AllPages">AllPages</a>]</div></div></body></html>');
+	echo('<div class="toolbar">[<a href="?page=' . $mainpage . '">MainPage</a>] ' . ($page != 'AllPages' ? '[<a href="?page=' . $page  . ($edit == true ? '&mode=view' : '&mode=edit') . '">' . ($edit == true ? 'ViewPage' : 'EditPage') . '</a>] ' : '') .  '[<a href="?page=AllPages">AllPages</a>]</div></div></body></html>');
 }
 
 function tsukimark2 ($page, $content) {
@@ -63,7 +63,7 @@ function tsukimark2 ($page, $content) {
 		$line = preg_replace("/^#(.*$)/", '<h1>$1</h1>', $line);
 		$line = preg_replace("/----/", "<hr />", $line);
 
-		$line = preg_replace("/([A-Z][a-z]*([A-Z][a-z]*)+)/", '<a href="?page=$1">$1</a>', $line);
+		$line = preg_replace("/([A-Z][a-z]+([A-Z][a-z]+)+)/", '<a href="?page=$1">$1</a>', $line);
 
 		$content = $content . $line;
 	}
