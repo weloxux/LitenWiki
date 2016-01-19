@@ -25,8 +25,8 @@ function makepage ($page, $edit) {
 		$file = fopen($path, "r");
 		$rawcontent = fread($file, filesize($path));
 	} else {
-		echo("<div id=\"pagecontent\"><p>Page does not exist. You can create it yourself.</p></div>");
-		$edit = true;
+		//echo("<div id=\"pagecontent\"><p>Page does not exist. You can create it yourself.</p></div>");
+		$rawcontent = 'Page does not exist. You can create it here.';
 	}
 
 	$content = tsukimark2($page, $rawcontent);
@@ -35,17 +35,13 @@ function makepage ($page, $edit) {
 	echo("<div id=\"pagecontent\">$content<br /></div><hr />");
 
 	if ($edit) {
-		makeform($rawcontent);
+		makeform($rawcontent, $edit);
 	}
 }
 
-function makeform ($content) {
+function makeform ($content, $edit) {
 	include('config.php');
-	if ($captcha_enabled) {
-		echo('<form method="post" name="post"><textarea name="content" rows="16" cols="90">' . $content . '</textarea><input name="send" type="hidden" /><br /><br />Captcha: ' . $captcha_text . ' <input name="captcha" type="text" /> <input type="submit" value="Submit" /></form><br />');
-	} else {
-		echo('<form method="post" name="post"><textarea name="content" rows="16" cols="90">' . $content . '</textarea><input name="send" type="hidden" /><br /><br /><input type="submit" value="Submit" /></form><br />');
-	}
+	echo('<form method="post" name="post"><textarea name="content" rows="16" cols="90">' . ($edit == true ? $content : '') . '</textarea><input name="send" type="hidden" /><br /><br />' . ($captcha_enabled = false ? 'Captcha: $captcha_text <input name=\"captcha\" type=\"text\" />' : '') .  '<input type="submit" value="Submit" /></form><br />');
 }
 
 function makefooter ($page, $edit) {
@@ -59,7 +55,6 @@ function tsukimark2 ($page, $content) {
 	$content = "<h1>$page</h1>";
 
 	foreach($textAr as $line) {
-		$line = preg_replace("/&gt;(.*)$/", '<span class="quote">&gt;$1</span>', $line);
 		$line = preg_replace('/((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \? \.#=-]*)*\/?)/', '<a href="$1">$1</a>', $line);
 
 		$line = preg_replace('/^\s*(?!#)(.+)$/', '<p>$1</p>', $line);
@@ -67,7 +62,6 @@ function tsukimark2 ($page, $content) {
 		$line = preg_replace("/^##(.*$)/", '<h2>$1</h2>', $line);
 		$line = preg_replace("/^#(.*$)/", '<h1>$1</h1>', $line);
 		$line = preg_replace("/----/", "<hr />", $line);
-		//$line = preg_replace("/^\s+(.*)/", '<pre>$1</pre>', $line);
 
 		$line = preg_replace("/([A-Z][a-z]*([A-Z][a-z]*)+)/", '<a href="?page=$1">$1</a>', $line);
 
