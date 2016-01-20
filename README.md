@@ -1,5 +1,11 @@
 # LitenWiki
-Very tiny wiki implementation in PHP. It's super efficient in terms of memory (for a PHP script), but not suitable for too serious use, since there is no system against spam or other forms of griefing.
+Very tiny wiki implementation in PHP. It's super efficient in terms of memory (for a PHP script).
+
+## Features
+* Really lightweight
+* Simple captcha against vandalism
+* Basic markup system: \#, \#\#, and \#\#\# for h1, h2 and h3 respectively; ---- for hr lines; more to come.
+* Automatic CamelCase page links
 
 ## Installation
 1. Drop the files into the desired folder on your web server
