@@ -63,7 +63,9 @@ function tsukimark2 ($page, $content) {
 		$line = preg_replace("/^#(.*$)/", '<h1>$1</h1>', $line);
 		$line = preg_replace("/----/", "<hr />", $line);
 
-		$line = preg_replace("/([A-Z][a-z]+([A-Z][a-z]*)+)/", '<a href="?page=$1">$1</a>', $line);
+		//$line = preg_replace("/([A-Z][a-z]+([A-Z][a-z]*)+)/", '<a href="?page=$1">$1</a>', $line);
+		$line = preg_replace("/\[\[(.+)\|(.+)\]\]/", '<a href="?page=$1">$2</a>', $line);
+		$line = preg_replace("/\[\[(.+)\]\]/", '<a href="?page=$1">$1</a>', $line);
 
 		$content = $content . $line;
 	}
