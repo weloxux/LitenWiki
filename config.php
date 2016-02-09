@@ -1,6 +1,6 @@
 <?php
 // Site config
-$name = 'PWiki';
+$name = 'LitenWiki';
 $mainpage = 'MainPage';
 $captcha_enabled = false;
 $captcha_text = '7 - 3 =';
