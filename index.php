@@ -2,13 +2,17 @@
 include('config.php');
 include('functions.php');
 
-if(isset($_GET["page"])) {
+if (!$enabled) {
+	die('Wiki is not currently enabled. You can change this in the config file.');
+}
+
+if (isset($_GET["page"])) {
 	$page = $_GET["page"];
 } else {
 	$page = $mainpage;
 }
 
-if(isset($_GET["mode"]) && $_GET["mode"] == "edit") {
+if (isset($_GET["mode"]) && $_GET["mode"] == "edit") {
 	$edit = true;
 } else {
 	$edit = false;
