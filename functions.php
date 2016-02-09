@@ -41,7 +41,15 @@ function makepage ($page, $edit) {
 
 function makeform ($content, $edit) {
 	include('config.php');
-	echo('<form method="post" name="post"><textarea name="content" rows="16" cols="90">' . ($edit == true ? $content : '') . '</textarea><input name="send" type="hidden" /><br /><br />' . ($captcha_enabled = false ? 'Captcha: $captcha_text <input name=\"captcha\" type=\"text\" />' : '') .  '<input type="submit" value="Submit" /></form><br />');
+	echo('<form method="post" name="post"><textarea name="content" rows="16" cols="90">');
+	if ($edit) {
+		echo($content);
+	}
+	echo('</textarea><input name="send" type="hidden" /><br /><br />');
+	if ($captcha_enabled) {
+		echo('Captcha: $captcha_text <input name=\"captcha\" type=\"text\" />');
+	}
+	echo('<input type="submit" value="Submit" /></form><br />')
 }
 
 function makefooter ($page, $edit) {
