@@ -7,8 +7,9 @@ $captcha_text = '7 - 3 =';  // Captcha question that needs to be answered if cap
 $captcha_answer = '4';      // Answer to the captcha question
 
 $templates = array(
-	'EX' => '<b>This is an example template.</b>',
-	'STUB' => '<i>This article is a stub. Please know that its information is incomplete.</i><br />',
+	'EX'		=> '<b>This is an example template.</b>',
+	'STUB'		=> '<i>This article is a stub. Please know that its information is incomplete.</i><br />',
+	'PAGECOUNT'	=> count(scandir("pages")) - 2, // - 2 because of '.' and '..'
 );
 
 $enabled = false;           // Whether or not the wiki is accessible

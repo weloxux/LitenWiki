@@ -15,4 +15,4 @@ _This text should be bold_
 ---------
 
 Templates: [[%TEMPLATE:EX]]
-Stats: [[%STATS:PAGES]] page(s) on this wiki
+Stats: [[%TEMPLATE:PAGECOUNT]] page(s) on this wiki

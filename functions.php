@@ -84,7 +84,6 @@ function tsukimark2 ($page, $content) {
 			$line = preg_replace("/\[\[%TEMPLATE:" . $template . "\]\]/", $replacement, $line);
 		}
 		$line = preg_replace("/\[\[%TEMPLATE:.*\]\]/", '<b>Unknown TEMPLATE!</b>', $line);
-		$line = preg_replace("/\[\[%STATS:PAGES\]\]/", count(scandir('pages')) - 2, $line); // - 2 because of '.' and '..'
 
 		$line = preg_replace("/\[\[([^\|]+)\|([^]]+)\]\]/", '<a href="?page=$1">$2</a>', $line, 1);
 		$line = preg_replace("/\[\[([^\]]+)\]\]/", '<a href="?page=$1">$1</a>', $line);
