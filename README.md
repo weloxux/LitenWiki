@@ -9,9 +9,10 @@ Tiny PHP CMS with flatfile storage.
 
 ## Installation
 1. Drop the files into the desired folder on your web server
-2. Edit config.php to suit your needs
-3. ???
-4. PROFIT!!!!
+2. Move or copy config.example.php to config.php
+3. Edit config.php to suit your needs
+4. ???
+5. PROFIT!!!!
 
 ## Syntax
 * `# something` - Creates a h1
