@@ -1,6 +1,11 @@
 <?php
-include('config.php');
 include('functions.php');
+
+if (!file_exists('config.php')) {
+	die('Config file doesn\'t exist. Did you rename the example file?');
+}
+
+include('config.php');
 
 if (!$enabled) {
 	die('Wiki is not currently enabled. You can change this in the config file.');
@@ -25,4 +30,3 @@ if (isset($_POST['send'])) {
 	else { post($page, $_POST['content'], $_POST['captcha']); }
 }
 makefooter($page, $edit);
-?>

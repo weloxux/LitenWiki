@@ -100,4 +100,3 @@ function post ($page, $content, $captcha) {
 	fclose($file);
 	die('Post successful! Refreshing!<meta http-equiv="refresh" content="0;url="">');
 }
-?>

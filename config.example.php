@@ -7,4 +7,3 @@ $captcha_text = '7 - 3 =';  // Captcha question that needs to be answered if cap
 $captcha_answer = '4';      // Answer to the captcha question
 
 $enabled = false;           // Whether or not the wiki is accessible
-?>
