@@ -6,4 +6,9 @@ $captcha_enabled = false;   // Whether or not captcha is enabled
 $captcha_text = '7 - 3 =';  // Captcha question that needs to be answered if captcha is enabled
 $captcha_answer = '4';      // Answer to the captcha question
 
+$templates = array(
+	'EX' => '<b>This is an example template.</b>',
+	'STUB' => '<i>This article is a stub. Please know that its information is incomplete.</i><br />',
+);
+
 $enabled = false;           // Whether or not the wiki is accessible

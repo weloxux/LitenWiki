@@ -59,6 +59,7 @@ function makefooter ($page, $edit) {
 }
 
 function tsukimark2 ($page, $content) {
+	include("config.php");
 	$textAr = explode("\n", $content);
 	$content = "<h1>$page</h1>";
 
@@ -79,8 +80,12 @@ function tsukimark2 ($page, $content) {
 		$line = preg_replace("/\s*\*\*\s*(.*)$/", '<li>$1</li>', $line);
 
 		// Inserts and stats
-		$line = preg_replace("/\[\[%STATS:PAGES\]\]/", count(scandir('pages')) - 2, $line);
-		
+		foreach ($templates as $template => $replacement) {
+			$line = preg_replace("/\[\[%TEMPLATE:" . $template . "\]\]/", $replacement, $line);
+		}
+		$line = preg_replace("/\[\[%TEMPLATE:.*\]\]/", '<b>Unknown TEMPLATE!</b>', $line);
+		$line = preg_replace("/\[\[%STATS:PAGES\]\]/", count(scandir('pages')) - 2, $line); // - 2 because of '.' and '..'
+
 		$line = preg_replace("/\[\[([^\|]+)\|([^]]+)\]\]/", '<a href="?page=$1">$2</a>', $line, 1);
 		$line = preg_replace("/\[\[([^\]]+)\]\]/", '<a href="?page=$1">$1</a>', $line);
 
