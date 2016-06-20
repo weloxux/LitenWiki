@@ -25,7 +25,6 @@ function makepage ($page, $edit) {
 		$file = fopen($path, "r");
 		$rawcontent = fread($file, filesize($path));
 	} else {
-		//echo("<div id=\"pagecontent\"><p>Page does not exist. You can create it yourself.</p></div>");
 		$rawcontent = 'Page does not exist. You can create it here.';
 	}
 
