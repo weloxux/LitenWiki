@@ -24,7 +24,6 @@ Tiny PHP CMS with flatfile storage.
 * `----` - hr line. More dashes can also be used
 * `[[Somepage]]` - Internal link
 * `[[Somepage|Alternate name here]]` - Internal link with alias name
-* `[[%STATS:PAGES]]` - Turns into pagecount (to be replaced with a template)
 * `[[%TEMPLATE:X]]` - Insert template with name X as defined in config.php
 
 Lists work like so:
