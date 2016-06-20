@@ -1,6 +1,6 @@
 <?php
 function makeheader ($page, $name) {
-	echo("<!doctype html><html><head><meta charset=\"UTF-8\" /><title>$page - $name</title></head><body><div id=\"wrapper\">");
+	echo("<!doctype html><html><head><meta charset=\"UTF-8\" /><link type=\"text/css\" rel=\"stylesheet\" href=\"style.css\" /><title>$page - $name</title></head><body><div id=\"wrapper\">");
 }
 
 function makepage ($page, $edit) {
@@ -47,9 +47,9 @@ function makeform ($content, $edit) {
 	}
 	echo('</textarea><input name="send" type="hidden" /><br /><br />');
 	if ($captcha_enabled) {
-		echo('Captcha: $captcha_text <input name=\"captcha\" type=\"text\" />');
+		echo("Captcha: $captcha_text <input name=\"captcha\" type=\"text\" /> ");
 	}
-	echo('<input type="submit" value="Submit" /></form><br />')
+	echo('<input type="submit" value="Submit" /></form><br />');
 }
 
 function makefooter ($page, $edit) {
@@ -65,19 +65,24 @@ function tsukimark2 ($page, $content) {
 	foreach($textAr as $line) {
 		$line = preg_replace('/((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \? \.#=-]*)*\/?)/', '<a href="$1">$1</a>', $line);
 
-		$line = preg_replace('/^\s*(?!#)(.+)$/', '<p>$1</p>', $line);
+		$line = preg_replace('/^\s*(?!#)(?!\*)(.+)$/', '<p>$1</p>', $line);
 		$line = preg_replace("/^###(.*$)/", '<h3>$1</h3>', $line);
 		$line = preg_replace("/^##(.*$)/", '<h2>$1</h2>', $line);
 		$line = preg_replace("/^#(.*$)/", '<h1>$1</h1>', $line);
 		$line = preg_replace("/----(-)*/", "<hr />", $line);
 
-		//$line = preg_replace("/([A-Z][a-z]+([A-Z][a-z]*)+)/", '<a href="?page=$1">$1</a>', $line);
-		$line = preg_replace("/\[\[(.+)\|(.+)\]\]/", '<a href="?page=$1">$2</a>', $line);
-		$line = preg_replace("/\[\[(.+)\]\]/", '<a href="?page=$1">$1</a>', $line);
+		$line = preg_replace("/\|([^\|]+)\|/", '<i>$1</i>', $line);
+		$line = preg_replace("/_([^_]+)_/", '<b>$1</b>', $line);
+
+		$line = preg_replace("/^.*\*\*\/.*$/", '</ul>', $line);
+		$line = preg_replace("/^.*\/\*\*.*$/", '<ul>', $line);
+		$line = preg_replace("/\s*\*\*\s*(.*)$/", '<li>$1</li>', $line);
+		
+		$line = preg_replace("/\[\[([^\|]+)\|([^]]+)\]\]/", '<a href="?page=$1">$2</a>', $line, 1);
+		$line = preg_replace("/\[\[([^\]]+)\]\]/", '<a href="?page=$1">$1</a>', $line);
 
 		$content = $content . $line;
 	}
-
 	$content = trim(preg_replace('/\s+/', ' ', $content));
 
 	return $content;
