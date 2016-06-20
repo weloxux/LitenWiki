@@ -77,6 +77,9 @@ function tsukimark2 ($page, $content) {
 		$line = preg_replace("/^.*\*\*\/.*$/", '</ul>', $line);
 		$line = preg_replace("/^.*\/\*\*.*$/", '<ul>', $line);
 		$line = preg_replace("/\s*\*\*\s*(.*)$/", '<li>$1</li>', $line);
+
+		// Inserts and stats
+		$line = preg_replace("/\[\[%STATS:PAGES\]\]/", count(scandir('pages')) - 2, $line);
 		
 		$line = preg_replace("/\[\[([^\|]+)\|([^]]+)\]\]/", '<a href="?page=$1">$2</a>', $line, 1);
 		$line = preg_replace("/\[\[([^\]]+)\]\]/", '<a href="?page=$1">$1</a>', $line);
