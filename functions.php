@@ -80,9 +80,9 @@ function tsukimark2 ($page, $content) {
 
 		// Inserts and stats
 		foreach ($templates as $template => $replacement) {
-			$line = preg_replace("/\[\[%TEMPLATE:" . $template . "\]\]/", $replacement, $line);
+			$line = preg_replace("/\{\{" . $template . "\}\}/", $replacement, $line);
 		}
-		$line = preg_replace("/\[\[%TEMPLATE:.*\]\]/", '<b>Unknown TEMPLATE!</b>', $line);
+		$line = preg_replace("/\{\{.*\}\}/", '<b>Unknown TEMPLATE!</b>', $line);
 
 		$line = preg_replace("/\[\[([^\|]+)\|([^]]+)\]\]/", '<a href="?page=$1">$2</a>', $line, 1);
 		$line = preg_replace("/\[\[([^\]]+)\]\]/", '<a href="?page=$1">$1</a>', $line);
