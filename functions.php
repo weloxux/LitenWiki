@@ -99,6 +99,9 @@ function post ($page, $content, $captcha) {
 	if ($captcha_enabled) {
 		if ($captcha != $captcha_answer) { die('Incorrect captcha!'); }
 	}
+
+	if (empty($_POST['content'])) { unlink("pages/$page.tm"); return; }
+
 	$content = trim(htmlspecialchars($content));
 	$path = 'pages/' . $page . '.tm';
 	$file = fopen($path, "w") or die("Can't access file!");

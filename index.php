@@ -26,7 +26,6 @@ if (isset($_GET["mode"]) && $_GET["mode"] == "edit") {
 makeheader($page, $name);
 makepage($page, $edit);
 if (isset($_POST['send'])) {
-	if(empty($_POST['content'])) { unlink("pages/$page.tm"); }
-	else { post($page, $_POST['content'], $_POST['captcha']); }
+	post($page, $_POST['content'], $_POST['captcha']);
 }
 makefooter($page, $edit);
