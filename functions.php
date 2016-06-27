@@ -54,18 +54,19 @@ function makeform ($content, $edit) {
 function makefooter ($page, $edit) {
 	include("config.php");
         $self = $_SERVER['PHP_SELF']; // get current page
-	echo('<div class="toolbar">[<a href="?page=' . $mainpage . '">MainPage</a>] ' . ($page != 'AllPages' ? '[<a href="?page=' . $page  . ($edit == true ? '&mode=view' : '&mode=edit') . '">' . ($edit == true ? 'ViewPage' : 'EditPage') . '</a>] ' : '') .  '[<a href="?page=AllPages">AllPages</a>]</div></div></body></html>');
+	echo('<div class="toolbar">[<a href="?page=' . $mainpage . '">MainPage</a>] ' . ($page != 'AllPages' ? '[<a href="?page=' . $page  . ($edit == true ? '&mode=view' : '&mode=edit') . '">' . ($edit == true ? 'ViewPage' : 'EditPage') . '</a>] ' : '') .  '[<a href="?page=AllPages">AllPages</a>] <span style="float:right;">' . tsukimark2(false, $footertext) . '</span></div></div></body></html>');
 }
 
-function tsukimark2 ($page, $content) {
+function tsukimark2 ($page, $content, $iscontent) {
 	include("config.php");
 	$textAr = explode("\n", $content);
-	$content = "<h1>$page</h1>";
+	if ($page) { $content = "<h1>$page</h1>"; }
+	else { $content = ""; }
 
 	foreach($textAr as $line) {
 		$line = preg_replace('/((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \? \.#=-]*)*\/?)/', '<a href="$1">$1</a>', $line);
 
-		$line = preg_replace('/^\s*(?!#)(?!\*)(.+)$/', '<p>$1</p>', $line);
+		if ($page) { $line = preg_replace('/^\s*(?!#)(?!\*)(.+)$/', '<p>$1</p>', $line); }
 		$line = preg_replace("/^###(.*$)/", '<h3>$1</h3>', $line);
 		$line = preg_replace("/^##(.*$)/", '<h2>$1</h2>', $line);
 		$line = preg_replace("/^#(.*$)/", '<h1>$1</h1>', $line);
