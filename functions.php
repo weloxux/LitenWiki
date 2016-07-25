@@ -7,7 +7,7 @@ function makepage ($page, $edit) {
 	include('config.php');
 	$path = 'pages/' . $page . '.tm';
 
-	if ($page == "AllPages") { // Special page that lists all pages
+	if ($page == $allpages) { // Special page that lists all pages
 		echo("<div id=\"pagecontent\"><p>This page lists all pages in this wiki</p><ul>");
 		$handler = opendir('pages');
 		while ($file = readdir($handler)) {
@@ -21,7 +21,7 @@ function makepage ($page, $edit) {
 		return;
 	}
 
-	if(file_exists($path)){
+	if (file_exists($path)) {
 		$file = fopen($path, "r");
 		$rawcontent = fread($file, filesize($path));
 	} else {
@@ -30,7 +30,6 @@ function makepage ($page, $edit) {
 
 	$content = tsukimark2($page, $rawcontent);
 
-	
 	echo("<div id=\"pagecontent\">$content<br /></div><hr />");
 
 	if ($edit) {
@@ -54,7 +53,7 @@ function makeform ($content, $edit) {
 function makefooter ($page, $edit) {
 	include("config.php");
         $self = $_SERVER['PHP_SELF']; // get current page
-	echo('<div class="toolbar">[<a href="?page=' . $mainpage . '">MainPage</a>] ' . ($page != 'AllPages' ? '[<a href="?page=' . $page  . ($edit == true ? '&mode=view' : '&mode=edit') . '">' . ($edit == true ? 'ViewPage' : 'EditPage') . '</a>] ' : '') .  '[<a href="?page=AllPages">AllPages</a>] <span style="float:right;">' . tsukimark2(false, $footertext) . '</span></div></div></body></html>');
+	echo('<div class="toolbar">[<a href="?page=' . $mainpage . '">MainPage</a>] ' . ($page != $allpages ? '[<a href="?page=' . $page  . ($edit == true ? '&mode=view' : '&mode=edit') . '">' . ($edit == true ? 'ViewPage' : 'EditPage') . '</a>] ' : '') .  '[<a href="?page=' . $allpages . '">' . $allpages . '</a>] <span style="float:right;">' . tsukimark2(false, $footertext) . '</span></div></div></body></html>');
 }
 
 function tsukimark2 ($page, $content, $iscontent) {

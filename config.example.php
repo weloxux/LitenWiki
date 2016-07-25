@@ -1,6 +1,7 @@
 <?php
 $name = 'LitenWiki';                                 // How your wiki will refer to itself
 $mainpage = 'MainPage';                              // Landing page when no specific page is requested
+$allpages = 'AllPages';                              // Page listing all pages on the wiki
 $footertext = "Copyright &copy; 2016 - [[About]]";   // Footer text, markup enabled
 
 $captcha_enabled = false;                            // Whether or not captcha is enabled
