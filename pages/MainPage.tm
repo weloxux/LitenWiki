@@ -8,6 +8,8 @@ The README.md file included with this wiki gives you an overview of all the synt
 
 Now, to see if the markup works: |this text should be italic|, and _this text should be bold_.
 
+More importantly, [[this]] should be an internal link. External links are expanded automatically: https://github.com/weloxux/litenwiki
+
 ## Templates
 
 {{EX}} Right now, there's {{PAGECOUNT}} page(s) on this wiki.
