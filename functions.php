@@ -11,8 +11,8 @@ function makepage ($page, $edit) {
 		echo("<div id=\"pagecontent\"><p>This page lists all pages in this wiki</p><ul>");
 		$handler = opendir('pages');
 		while ($file = readdir($handler)) {
-			if ($file != "." && $file != "..") {
-				$pagename = substr($file, 0, -3); // Slice file extensions
+			if ($file != "." && $file != ".." && substr($file, -4) == ".tm2" ) {
+				$pagename = substr($file, 0, -4); // Slice file extensions
 				echo("<li><a href=\"?page=$pagename\">$pagename</a></li>");
 			}
 		}
