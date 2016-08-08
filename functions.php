@@ -5,7 +5,7 @@ function makeheader ($page, $name) {
 
 function makepage ($page, $edit) {
 	include('config.php');
-	$path = 'pages/' . $page . '.tm';
+	$path = 'pages/' . $page . '.tm2';
 
 	if ($page == $allpages) { // Special page that lists all pages
 		echo("<div id=\"pagecontent\"><p>This page lists all pages in this wiki</p><ul>");
@@ -100,10 +100,10 @@ function post ($page, $content, $captcha) {
 		if ($captcha != $captcha_answer) { die('Incorrect captcha!'); }
 	}
 
-	if (empty($_POST['content'])) { unlink("pages/$page.tm"); return; }
+	if (empty($_POST['content'])) { unlink("pages/$page.tm2"); return; }
 
 	$content = trim(htmlspecialchars($content));
-	$path = 'pages/' . $page . '.tm';
+	$path = 'pages/' . $page . '.tm2';
 	$file = fopen($path, "w") or die("Can't access file!");
 	fwrite($file, $content);
 	fclose($file);
