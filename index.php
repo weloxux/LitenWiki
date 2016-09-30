@@ -53,7 +53,6 @@ function makeform ($content, $edit) {
 
 function makefooter ($page, $edit) {
 	include("config.php");
-        $self = $_SERVER['PHP_SELF']; // get current page
 	echo('<div class="toolbar">[<a href="?page=' . $mainpage . '">MainPage</a>] ' . ($page != $allpages ? '[<a href="?page=' . $page  . ($edit == true ? '&mode=view' : '&mode=edit') . '">' . ($edit == true ? 'ViewPage' : 'EditPage') . '</a>] ' : '') .  '[<a href="?page=' . $allpages . '">' . $allpages . '</a>] <span style="float:right;">' . tsukimark2(false, $footertext) . '</span></div></div></body></html>');
 }
 
